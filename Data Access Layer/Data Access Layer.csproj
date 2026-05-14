@@ -55,7 +55,6 @@
     <Compile Include="EquipmentDataAccess.cs" />
     <Compile Include="MemberDataAccess.cs" />
     <Compile Include="ReservationDataAccess.cs" />
-    <Compile Include="ReservationEquipmentDataAccess.cs" />
     <Compile Include="WorkspaceDataAccess.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
