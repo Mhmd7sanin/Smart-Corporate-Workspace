@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business_Layer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,20 @@ namespace Presentation_layer.Equipment
 {
     public partial class frmEquipmentInfo : Form
     {
-        public frmEquipmentInfo()
+        private ClsEquipments Equipment { get; set; }
+
+
+        public frmEquipmentInfo(int id)
         {
             InitializeComponent();
+
+            Equipment = ClsEquipments.Find(id);
+        }
+
+        private void frmEquipmentInfo_Load(object sender, EventArgs e)
+        {
+            EquipmentIdLbl.Text = Equipment.EquipmentID.ToString();
+            EquipmentTxtBx.Text = Equipment.EquipmentType;
         }
     }
 }

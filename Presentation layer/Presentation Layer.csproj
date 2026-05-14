@@ -46,23 +46,147 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Equipment\frmAddEditEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Equipment\frmAddEditEquipment.Designer.cs">
+      <DependentUpon>frmAddEditEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\frmEquipmentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\frmEquipmentInfo.Designer.cs">
+      <DependentUpon>frmEquipmentInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\frmListEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\frmListEquipment.Designer.cs">
+      <DependentUpon>frmListEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\frmAddEditHub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hubs\frmAddEditHub.Designer.cs">
+      <DependentUpon>frmAddEditHub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\frmHubInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hubs\frmHubInfo.Designer.cs">
+      <DependentUpon>frmHubInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\frmListHubs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hubs\frmListHubs.Designer.cs">
+      <DependentUpon>frmListHubs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Members\frmAddEditMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Members\frmAddEditMember.Designer.cs">
+      <DependentUpon>frmAddEditMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Members\frmListMembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Members\frmListMembers.Designer.cs">
+      <DependentUpon>frmListMembers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Members\frmMemberInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Members\frmMemberInfo.Designer.cs">
+      <DependentUpon>frmMemberInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reservations\frmAddEditReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmAddEditReservation.Designer.cs">
+      <DependentUpon>frmAddEditReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmListReservations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmListReservations.Designer.cs">
+      <DependentUpon>frmListReservations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmReservationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmReservationInfo.Designer.cs">
+      <DependentUpon>frmReservationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workspaces\frmAddEditWorkspace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Workspaces\frmAddEditWorkspace.Designer.cs">
+      <DependentUpon>frmAddEditWorkspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workspaces\frmListWorkspaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Workspaces\frmListWorkspaces.Designer.cs">
+      <DependentUpon>frmListWorkspaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workspaces\frmWorkspaceInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Workspaces\frmWorkspaceInfo.Designer.cs">
+      <DependentUpon>frmWorkspaceInfo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Equipment\frmEquipmentInfo.resx">
+      <DependentUpon>frmEquipmentInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Equipment\frmListEquipment.resx">
+      <DependentUpon>frmListEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hubs\frmHubInfo.resx">
+      <DependentUpon>frmHubInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hubs\frmListHubs.resx">
+      <DependentUpon>frmListHubs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Members\frmListMembers.resx">
+      <DependentUpon>frmListMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Members\frmMemberInfo.resx">
+      <DependentUpon>frmMemberInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmListReservations.resx">
+      <DependentUpon>frmListReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmReservationInfo.resx">
+      <DependentUpon>frmReservationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workspaces\frmListWorkspaces.resx">
+      <DependentUpon>frmListWorkspaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workspaces\frmWorkspaceInfo.resx">
+      <DependentUpon>frmWorkspaceInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,6 +205,24 @@
       <Project>{f3713dc2-7301-47fe-99a2-7541719b0168}</Project>
       <Name>Business Layer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-user %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credit-card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

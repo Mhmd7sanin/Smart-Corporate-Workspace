@@ -28,12 +28,259 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.ReservationIdLbl = new System.Windows.Forms.Label();
+            this.CorporateTxtBx = new System.Windows.Forms.TextBox();
+            this.NameTxtBx = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LayoutTxtBx = new System.Windows.Forms.TextBox();
+            this.LocationTxtBx = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.WorkspaceTypeTxtBx = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.EquipmentTypeTxtBx = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ReservationRateTxtBx = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ReservationDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.SuspendLayout();
+            // 
+            // ReservationIdLbl
+            // 
+            this.ReservationIdLbl.AutoSize = true;
+            this.ReservationIdLbl.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReservationIdLbl.Location = new System.Drawing.Point(274, 22);
+            this.ReservationIdLbl.Name = "ReservationIdLbl";
+            this.ReservationIdLbl.Size = new System.Drawing.Size(52, 30);
+            this.ReservationIdLbl.TabIndex = 16;
+            this.ReservationIdLbl.Text = "N/A";
+            // 
+            // CorporateTxtBx
+            // 
+            this.CorporateTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CorporateTxtBx.Enabled = false;
+            this.CorporateTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CorporateTxtBx.Location = new System.Drawing.Point(285, 175);
+            this.CorporateTxtBx.Name = "CorporateTxtBx";
+            this.CorporateTxtBx.Size = new System.Drawing.Size(302, 38);
+            this.CorporateTxtBx.TabIndex = 15;
+            // 
+            // NameTxtBx
+            // 
+            this.NameTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTxtBx.Enabled = false;
+            this.NameTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameTxtBx.Location = new System.Drawing.Point(285, 97);
+            this.NameTxtBx.Name = "NameTxtBx";
+            this.NameTxtBx.Size = new System.Drawing.Size(302, 38);
+            this.NameTxtBx.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(28, 178);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(221, 31);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Corporate Affiliation";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 31);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Reservation Id";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(28, 97);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(168, 31);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Member Name";
+            // 
+            // LayoutTxtBx
+            // 
+            this.LayoutTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LayoutTxtBx.Enabled = false;
+            this.LayoutTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LayoutTxtBx.Location = new System.Drawing.Point(834, 257);
+            this.LayoutTxtBx.Name = "LayoutTxtBx";
+            this.LayoutTxtBx.Size = new System.Drawing.Size(348, 38);
+            this.LayoutTxtBx.TabIndex = 29;
+            // 
+            // LocationTxtBx
+            // 
+            this.LocationTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LocationTxtBx.Enabled = false;
+            this.LocationTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationTxtBx.Location = new System.Drawing.Point(834, 171);
+            this.LocationTxtBx.Name = "LocationTxtBx";
+            this.LocationTxtBx.Size = new System.Drawing.Size(348, 38);
+            this.LocationTxtBx.TabIndex = 28;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(610, 261);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 31);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Layout";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(610, 179);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 31);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Location";
+            // 
+            // WorkspaceTypeTxtBx
+            // 
+            this.WorkspaceTypeTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WorkspaceTypeTxtBx.Enabled = false;
+            this.WorkspaceTypeTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkspaceTypeTxtBx.Location = new System.Drawing.Point(834, 95);
+            this.WorkspaceTypeTxtBx.Name = "WorkspaceTypeTxtBx";
+            this.WorkspaceTypeTxtBx.Size = new System.Drawing.Size(348, 38);
+            this.WorkspaceTypeTxtBx.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(608, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(179, 31);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Workspace Type";
+            // 
+            // EquipmentTypeTxtBx
+            // 
+            this.EquipmentTypeTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EquipmentTypeTxtBx.Enabled = false;
+            this.EquipmentTypeTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EquipmentTypeTxtBx.Location = new System.Drawing.Point(285, 259);
+            this.EquipmentTypeTxtBx.Name = "EquipmentTypeTxtBx";
+            this.EquipmentTypeTxtBx.Size = new System.Drawing.Size(302, 38);
+            this.EquipmentTypeTxtBx.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(28, 259);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(180, 31);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Equipment Type";
+            // 
+            // ReservationRateTxtBx
+            // 
+            this.ReservationRateTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ReservationRateTxtBx.Enabled = false;
+            this.ReservationRateTxtBx.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReservationRateTxtBx.Location = new System.Drawing.Point(285, 340);
+            this.ReservationRateTxtBx.Name = "ReservationRateTxtBx";
+            this.ReservationRateTxtBx.Size = new System.Drawing.Size(302, 38);
+            this.ReservationRateTxtBx.TabIndex = 31;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(28, 340);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(184, 31);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Reservation Rate";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(610, 343);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(186, 31);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "Reservation Date";
+            // 
+            // ReservationDateTimePicker
+            // 
+            this.ReservationDateTimePicker.Enabled = false;
+            this.ReservationDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReservationDateTimePicker.Location = new System.Drawing.Point(834, 342);
+            this.ReservationDateTimePicker.Name = "ReservationDateTimePicker";
+            this.ReservationDateTimePicker.Size = new System.Drawing.Size(348, 34);
+            this.ReservationDateTimePicker.TabIndex = 34;
+            // 
+            // frmReservationInfo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmReservationInfo";
+            this.ClientSize = new System.Drawing.Size(1221, 419);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.ReservationDateTimePicker);
+            this.Controls.Add(this.EquipmentTypeTxtBx);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.ReservationRateTxtBx);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.LayoutTxtBx);
+            this.Controls.Add(this.LocationTxtBx);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.WorkspaceTypeTxtBx);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ReservationIdLbl);
+            this.Controls.Add(this.CorporateTxtBx);
+            this.Controls.Add(this.NameTxtBx);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1180, 466);
+            this.Name = "frmReservationInfo";
+            this.ShowIcon = false;
+            this.Text = "Reservation Info";
+            this.Load += new System.EventHandler(this.frmReservationInfo_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label ReservationIdLbl;
+        private System.Windows.Forms.TextBox CorporateTxtBx;
+        private System.Windows.Forms.TextBox NameTxtBx;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox LayoutTxtBx;
+        private System.Windows.Forms.TextBox LocationTxtBx;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox WorkspaceTypeTxtBx;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox EquipmentTypeTxtBx;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox ReservationRateTxtBx;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker ReservationDateTimePicker;
     }
 }
