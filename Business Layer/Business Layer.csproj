@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MemberBusiness.cs" />
-    <Compile Include="ReservationEquipmentBusiness.cs" />
     <Compile Include="WorkspaceBusiness.cs" />
     <Compile Include="ReservationBusiness.cs" />
     <Compile Include="EquipmentBusiness.cs" />
