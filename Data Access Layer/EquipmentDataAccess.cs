@@ -106,6 +106,42 @@ namespace Data_Access_Layer
             return IsFound;
         }
 
+        // Get Equipment By type
+        public static bool GetEquipmentByType(ref int EquipmentID, string EquipmentType)
+        {
+            bool IsFound = false;
+
+            using (SqlConnection connection = new SqlConnection(ServerConnection.ConnectionString))
+            {
+                string Query = "SELECT * FROM Equipment WHERE type = @type";
+
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("@type", EquipmentType);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader =
+                            command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            IsFound = true;
+                            EquipmentID = (int)reader["equipment_id"];
+                            //EquipmentType = reader["type"].ToString();
+                        }
+
+                        reader.Close();
+                    }
+                    catch { }
+                }
+            }
+
+            return IsFound;
+        }
+
 
         // Insert New Equipment
         public static int InsertNewEquipment(string EquipmentType)

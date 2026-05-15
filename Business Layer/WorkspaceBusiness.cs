@@ -166,16 +166,21 @@ namespace Business_Layer
         // Search By District Location
         public static DataTable SearchByHubDistrictLocation(string DistrictLocation)
         {
-            return ClsWorkspaceData.SearchByHubDistrictLocation(
-                DistrictLocation);
+            return ClsWorkspaceData.SearchByHubDistrictLocation(DistrictLocation);
         }
 
 
         // Search By Layout
         public static DataTable SearchByHubLayout(string Layout)
         {
-            return ClsWorkspaceData.SearchByHubLayout(
-                Layout);
+            return ClsWorkspaceData.SearchByHubLayout(Layout);
+        }
+
+
+        // Search By Hub Id
+        public static DataTable GetWorkspacesByHubID(int HubId)
+        {
+            return ClsWorkspaceData.SearchByHubId(HubId);
         }
 
 

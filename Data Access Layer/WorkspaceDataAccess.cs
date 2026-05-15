@@ -313,6 +313,49 @@ namespace Data_Access_Layer
         }
 
 
+        // Search By Hub Id
+        public static DataTable SearchByHubId(int HubId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ServerConnection.ConnectionString))
+            {
+                string Query =
+                    @"SELECT
+                        w.workspace_id AS 'Workspace ID',
+                        w.type AS 'Workspace Type',
+                        h.district_location AS 'District Location',
+                        h.architectural_layout AS 'Layout',
+                        w.rate AS 'Rate' 
+                      FROM Workspace w
+                      INNER JOIN Hub h
+                      ON w.hub_id = h.hub_id
+                      WHERE h.hub_id = @HubId";
+
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("@HubId", HubId);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                            dt.Load(reader);
+
+                        reader.Close();
+                    }
+                    catch { }
+                }
+            }
+
+            return dt;
+        }
+
+
+
         // Search By Hub District Location
         public static DataTable SearchByHubDistrictLocation(string DistrictLocation)
         {

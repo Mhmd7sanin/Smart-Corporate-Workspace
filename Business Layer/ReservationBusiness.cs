@@ -118,6 +118,7 @@ namespace Business_Layer
             return ClsReservationData.SearchByMemberName(Name);
         }
 
+
         // Search By Corporate Affiliation
         public static DataTable SearchByCorporateAffiliation(string CorporateAffiliation)
         {
@@ -165,5 +166,26 @@ namespace Business_Layer
         {
             return ClsReservationData.IsReservationExist(ReservationID);
         }
+
+
+        // get Reservation by Member ID
+        public static DataTable GetReservationsByMemberID(int MemberId)
+        {
+            return ClsReservationData.SearchByMemberId(MemberId);
+        }
+
+        // get Reservation by Equipment ID
+        public static DataTable GetReservationsByEquipmentID(int Equipmentid)
+        {
+            return ClsReservationData.SearchByEquipmentId(Equipmentid);
+        }
+
+        // get Reservation by Workspace ID
+        public static DataTable GetReservationsByWorkspaceID(int Workspaceid)
+        {
+            return ClsReservationData.SearchByWorkspaceId(Workspaceid);
+        }
+
+
     }
 }

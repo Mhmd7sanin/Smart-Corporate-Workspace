@@ -128,9 +128,9 @@ namespace Presentation_layer.Equipment
 
         private void AddNewBtn_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson AddNewForm = new AddAndUpdatePerson(-1);
-            //AddNewForm.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditEquipment AddNewForm = new frmAddEditEquipment(-1);
+            AddNewForm.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,9 +142,9 @@ namespace Presentation_layer.Equipment
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson Form = new AddAndUpdatePerson((int)PeopleDataGrideView.CurrentRow.Cells[0].Value);
-            //Form.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditEquipment Form = new frmAddEditEquipment((int)EquipmentsDataGrideView.CurrentRow.Cells[0].Value);
+            Form.ShowDialog();
+            _LoadDataGrideView();
 
         }
 
@@ -161,17 +161,90 @@ namespace Presentation_layer.Equipment
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Delete Person[" + EquipmentsDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            int EquipmentID = (int)EquipmentsDataGrideView.CurrentRow.Cells[0].Value;
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete Equipment [{EquipmentID}] ?",
+                "Confirmation",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.OK)
+                return;
+
+            // Check reservations linked to equipment
+            DataTable dt = ClsReservations.GetReservationsByEquipmentID(EquipmentID);
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                if (ClsEquipments.Delete((int)EquipmentsDataGrideView.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Person Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult deleteReservations = MessageBox.Show(
+                    $"This equipment is used in {dt.Rows.Count} reservation(s).\n\n" +
+                    "Do you want to delete all reservations first?",
+                    "Warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (deleteReservations == DialogResult.Yes)
+                {
+                    bool allDeleted = true;
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int ReservationID =
+                            Convert.ToInt32(row["reservation_id"]);
+
+                        if (!ClsReservations.Delete(ReservationID))
+                        {
+                            allDeleted = false;
+                            break;
+                        }
+                    }
+
+                    if (!allDeleted)
+                    {
+                        MessageBox.Show(
+                            "Error deleting reservations. Equipment not deleted.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        _LoadDataGrideView();
+
+                        return;
+                    }
+                }
                 else
-                    MessageBox.Show("Error:Person Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    MessageBox.Show(
+                        "Equipment not deleted because reservations exist.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
             }
+
+            // Delete equipment
+            if (ClsEquipments.Delete(EquipmentID))
+            {
+                MessageBox.Show(
+                    "Equipment deleted successfully.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Error: Equipment was not deleted.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
             _LoadDataGrideView();
         }
-
-
 
     }
 }

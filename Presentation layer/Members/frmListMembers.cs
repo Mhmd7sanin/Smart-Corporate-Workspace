@@ -133,9 +133,9 @@ namespace Presentation_layer.Members
 
         private void AddNewBtn_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson AddNewForm = new AddAndUpdatePerson(-1);
-            //AddNewForm.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditMember AddNewForm = new frmAddEditMember(-1);
+            AddNewForm.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -147,10 +147,9 @@ namespace Presentation_layer.Members
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson Form = new AddAndUpdatePerson((int)PeopleDataGrideView.CurrentRow.Cells[0].Value);
-            //Form.ShowDialog();
-            //_LoadDataGrideView();
-
+            frmAddEditMember Form = new frmAddEditMember((int)MembersDataGrideView.CurrentRow.Cells[0].Value);
+            Form.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void MembersDataGrideView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -166,13 +165,84 @@ namespace Presentation_layer.Members
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Delete Person[" + MembersDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            int MemberID = (int)MembersDataGrideView.CurrentRow.Cells[0].Value;
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete Member [{MemberID}] ?",
+                "Confirmation",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.OK)
+                return;
+
+            // STEP 1: check if member has reservations
+            DataTable dt = ClsReservations.GetReservationsByMemberID(MemberID);
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                if (ClsMembers.Delete((int)MembersDataGrideView.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Person Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult deleteReservations = MessageBox.Show(
+                    $"This member has {dt.Rows.Count} reservation(s).\n\n" +
+                    "Do you want to delete all reservations first?",
+                    "Warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (deleteReservations == DialogResult.Yes)
+                {
+                    bool allDeleted = true;
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int ReservationID = Convert.ToInt32(row["Reservation ID"]);
+
+                        if (!ClsReservations.Delete(ReservationID))
+                        {
+                            allDeleted = false;
+                            break;
+                        }
+                    }
+
+                    if (!allDeleted)
+                    {
+                        MessageBox.Show(
+                            "Error deleting some reservations. Member not deleted.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        _LoadDataGrideView();
+                        return;
+                    }
+                }
                 else
-                    MessageBox.Show("Error:Person Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    MessageBox.Show(
+                        "Member not deleted because reservations exist.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
             }
+
+            // STEP 2: delete member
+            if (ClsMembers.Delete(MemberID))
+            {
+                MessageBox.Show("Member deleted successfully.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error: Member was not deleted.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
             _LoadDataGrideView();
         }
 

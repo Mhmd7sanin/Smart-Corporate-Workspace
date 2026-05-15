@@ -149,6 +149,9 @@
     <Compile Include="Workspaces\frmWorkspaceInfo.Designer.cs">
       <DependentUpon>frmWorkspaceInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Equipment\frmAddEditEquipment.resx">
+      <DependentUpon>frmAddEditEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Equipment\frmEquipmentInfo.resx">
       <DependentUpon>frmEquipmentInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,11 +161,17 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hubs\frmAddEditHub.resx">
+      <DependentUpon>frmAddEditHub.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hubs\frmHubInfo.resx">
       <DependentUpon>frmHubInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hubs\frmListHubs.resx">
       <DependentUpon>frmListHubs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Members\frmAddEditMember.resx">
+      <DependentUpon>frmAddEditMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Members\frmListMembers.resx">
       <DependentUpon>frmListMembers.cs</DependentUpon>
@@ -175,11 +184,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmAddEditReservation.resx">
+      <DependentUpon>frmAddEditReservation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reservations\frmListReservations.resx">
       <DependentUpon>frmListReservations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reservations\frmReservationInfo.resx">
       <DependentUpon>frmReservationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workspaces\frmAddEditWorkspace.resx">
+      <DependentUpon>frmAddEditWorkspace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Workspaces\frmListWorkspaces.resx">
       <DependentUpon>frmListWorkspaces.cs</DependentUpon>
@@ -223,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\credit-card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifying-glass-search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -157,9 +157,9 @@ namespace Presentation_layer.Reservations
 
         private void AddNewBtn_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson AddNewForm = new AddAndUpdatePerson(-1);
-            //AddNewForm.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditReservation AddNewForm = new frmAddEditReservation(-1);
+            AddNewForm.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,9 +171,9 @@ namespace Presentation_layer.Reservations
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson Form = new AddAndUpdatePerson((int)PeopleDataGrideView.CurrentRow.Cells[0].Value);
-            //Form.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditReservation Form = new frmAddEditReservation((int)ReservationsDataGrideView.CurrentRow.Cells[0].Value);
+            Form.ShowDialog();
+            _LoadDataGrideView();
 
         }
 
@@ -190,12 +190,12 @@ namespace Presentation_layer.Reservations
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Delete Person[" + ReservationsDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Are you sure you want to Delete Reservation[" + ReservationsDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 if (ClsReservations.Delete((int)ReservationsDataGrideView.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Person Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reservation Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    MessageBox.Show("Error:Person Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error:Reservation Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             _LoadDataGrideView();
         }

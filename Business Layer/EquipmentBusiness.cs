@@ -121,6 +121,17 @@ namespace Business_Layer
             return ClsEquipmentData.SearchByEquipmentType(EquipmentType);
         }
 
+        public static ClsEquipments SearchByType(string EquipmentType)
+        {
+            int EquipmentID = -1;
+
+            if (ClsEquipmentData.GetEquipmentByType(ref EquipmentID, EquipmentType))
+            {
+                return new ClsEquipments(EquipmentID, EquipmentType);
+            }
+
+            return null;
+        }
 
         // Exists
         public static bool Exists(int EquipmentID)

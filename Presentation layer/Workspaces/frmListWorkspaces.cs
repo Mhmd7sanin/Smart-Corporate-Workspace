@@ -144,9 +144,9 @@ namespace Presentation_layer.Workspaces
 
         private void AddNewBtn_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson AddNewForm = new AddAndUpdatePerson(-1);
-            //AddNewForm.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditWorkspace AddNewForm = new frmAddEditWorkspace(-1);
+            AddNewForm.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,9 +158,9 @@ namespace Presentation_layer.Workspaces
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson Form = new AddAndUpdatePerson((int)PeopleDataGrideView.CurrentRow.Cells[0].Value);
-            //Form.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditWorkspace Form = new frmAddEditWorkspace((int)WorkspacesDataGrideView.CurrentRow.Cells[0].Value);
+            Form.ShowDialog();
+            _LoadDataGrideView();
 
         }
 
@@ -177,13 +177,89 @@ namespace Presentation_layer.Workspaces
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Delete Person[" + WorkspacesDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            int WorkspaceID =
+                (int)WorkspacesDataGrideView.CurrentRow.Cells[0].Value;
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete Workspace [{WorkspaceID}] ?",
+                "Confirmation",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.OK)
+                return;
+
+            // Check reservations linked to workspace
+            DataTable dt = ClsReservations.GetReservationsByWorkspaceID(WorkspaceID);
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                if (ClsEquipments.Delete((int)WorkspacesDataGrideView.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Person Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult deleteReservations = MessageBox.Show(
+                    $"This workspace has {dt.Rows.Count} reservation(s).\n\n" +
+                    "Do you want to delete all reservations first?",
+                    "Warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (deleteReservations == DialogResult.Yes)
+                {
+                    bool allDeleted = true;
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int ReservationID =
+                            Convert.ToInt32(row["Reservation ID"]);
+
+                        if (!ClsReservations.Delete(ReservationID))
+                        {
+                            allDeleted = false;
+                            break;
+                        }
+                    }
+
+                    if (!allDeleted)
+                    {
+                        MessageBox.Show(
+                            "Error deleting reservations. Workspace not deleted.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        _LoadDataGrideView();
+
+                        return;
+                    }
+                }
                 else
-                    MessageBox.Show("Error:Person Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    MessageBox.Show(
+                        "Workspace not deleted because reservations exist.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
             }
+
+            // Delete workspace
+            if (ClsWorkspaces.Delete(WorkspaceID))
+            {
+                MessageBox.Show(
+                    "Workspace deleted successfully.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Error: Workspace was not deleted.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
             _LoadDataGrideView();
         }
 

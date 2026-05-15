@@ -350,6 +350,58 @@ namespace Data_Access_Layer
         }
 
 
+        // Search By Member Id
+        public static DataTable SearchByMemberId(int id)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ServerConnection.ConnectionString))
+            {
+                string Query =
+                    @"SELECT
+                        Reservation.reservation_id AS 'Reservation ID',
+                        Member.name AS 'Member Name',
+                        Member.corporate_affiliation AS 'Corporate Affiliation',
+                        Workspace.type AS 'Workspace Type',
+                        Hub.district_location AS 'District Location',
+                        Hub.architectural_layout AS 'Layout',
+                        Equipment.type AS 'Equipment Type',
+                        Reservation.rate AS 'Reservation Rate',
+                        Reservation.reservation_date AS 'Reservation Date'
+                      FROM Reservation
+                      INNER JOIN Member
+                      ON Reservation.member_id = Member.member_id
+                      INNER JOIN Workspace
+                      ON Reservation.workspace_id = Workspace.workspace_id
+                      INNER JOIN Hub
+                      ON Workspace.hub_id = Hub.hub_id
+                      INNER JOIN Equipment
+                      ON Reservation.equipment_id = Equipment.equipment_id
+                      WHERE Member.member_id = @id ";
+
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id.ToString());
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                            dt.Load(reader);
+
+                        reader.Close();
+                    }
+                    catch { }
+                }
+            }
+
+            return dt;
+        }
+
+
         // Search By Corporate Affiliation
         public static DataTable SearchByCorporateAffiliation(string CorporateAffiliation)
         {
@@ -434,6 +486,58 @@ namespace Data_Access_Layer
                 using (SqlCommand command = new SqlCommand(Query, connection))
                 {
                     command.Parameters.AddWithValue("@WorkspaceType", WorkspaceType);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                            dt.Load(reader);
+
+                        reader.Close();
+                    }
+                    catch { }
+                }
+            }
+
+            return dt;
+        }
+
+
+        // Search By Workspace Id
+        public static DataTable SearchByWorkspaceId(int WorkspaceId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ServerConnection.ConnectionString))
+            {
+                string Query =
+                    @"SELECT
+                        Reservation.reservation_id AS 'Reservation ID',
+                        Member.name AS 'Member Name',
+                        Member.corporate_affiliation AS 'Corporate Affiliation',
+                        Workspace.type AS 'Workspace Type',
+                        Hub.district_location AS 'District Location',
+                        Hub.architectural_layout AS 'Layout',
+                        Equipment.type AS 'Equipment Type',
+                        Reservation.rate AS 'Reservation Rate',
+                        Reservation.reservation_date AS 'Reservation Date'
+                      FROM Reservation
+                      INNER JOIN Member
+                      ON Reservation.member_id = Member.member_id
+                      INNER JOIN Workspace
+                      ON Reservation.workspace_id = Workspace.workspace_id
+                      INNER JOIN Hub
+                      ON Workspace.hub_id = Hub.hub_id
+                      INNER JOIN Equipment
+                      ON Reservation.equipment_id = Equipment.equipment_id
+                      WHERE Workspace.workspace_id = @WorkspaceId ";
+
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("@WorkspaceId", WorkspaceId);
 
                     try
                     {
@@ -609,6 +713,37 @@ namespace Data_Access_Layer
             return dt;
         }
 
+
+        // Search By Equipment id
+        public static DataTable SearchByEquipmentId(int Equipmentid)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ServerConnection.ConnectionString))
+            {
+                string Query = "SELECT * FROM Reservation WHERE equipment_id = @EquipmentID ";
+
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("@EquipmentID", Equipmentid);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                            dt.Load(reader);
+
+                        reader.Close();
+                    }
+                    catch { }
+                }
+            }
+
+            return dt;
+        }
 
         // Search By Reservation Rate
         public static DataTable SearchByRate(string Rate)

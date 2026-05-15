@@ -134,9 +134,9 @@ namespace Presentation_layer.Hubs
 
         private void AddNewBtn_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson AddNewForm = new AddAndUpdatePerson(-1);
-            //AddNewForm.ShowDialog();
-            //_LoadDataGrideView();
+            frmAddEditHub AddNewForm = new frmAddEditHub(-1);
+            AddNewForm.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,10 +148,9 @@ namespace Presentation_layer.Hubs
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AddAndUpdatePerson Form = new AddAndUpdatePerson((int)PeopleDataGrideView.CurrentRow.Cells[0].Value);
-            //Form.ShowDialog();
-            //_LoadDataGrideView();
-
+            frmAddEditHub Form = new frmAddEditHub((int)HubsDataGrideView.CurrentRow.Cells[0].Value);
+            Form.ShowDialog();
+            _LoadDataGrideView();
         }
 
         private void MembersDataGrideView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -167,17 +166,115 @@ namespace Presentation_layer.Hubs
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Delete Person[" + HubsDataGrideView.CurrentRow.Cells[0].Value + "]", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            int HubID =
+                (int)HubsDataGrideView.CurrentRow.Cells[0].Value;
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete Hub [{HubID}] ?",
+                "Confirmation",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.OK)
+                return;
+
+            // Check workspaces linked to hub
+            DataTable dt = ClsWorkspaces.GetWorkspacesByHubID(HubID);
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                if (ClsHubs.Delete((int)HubsDataGrideView.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Person Deleted Successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult deleteWorkspaces = MessageBox.Show(
+                    $"This hub has {dt.Rows.Count} workspace(s).\n\n" +
+                    "Do you want to delete all workspaces and reservations first?",
+                    "Warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (deleteWorkspaces == DialogResult.Yes)
+                {
+                    bool allDeleted = true;
+
+                    foreach (DataRow workspaceRow in dt.Rows)
+                    {
+                        int WorkspaceID =
+                            Convert.ToInt32(workspaceRow["Workspace ID"]);
+
+                        // Delete reservations first
+                        DataTable dtReservations =
+                            ClsReservations.GetReservationsByWorkspaceID(WorkspaceID);
+
+                        if (dtReservations != null &&
+                            dtReservations.Rows.Count > 0)
+                        {
+                            foreach (DataRow reservationRow in dtReservations.Rows)
+                            {
+                                int ReservationID =
+                                    Convert.ToInt32(reservationRow["Reservation ID"]);
+
+                                if (!ClsReservations.Delete(ReservationID))
+                                {
+                                    allDeleted = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!allDeleted)
+                            break;
+
+                        // Delete workspace
+                        if (!ClsWorkspaces.Delete(WorkspaceID))
+                        {
+                            allDeleted = false;
+                            break;
+                        }
+                    }
+
+                    if (!allDeleted)
+                    {
+                        MessageBox.Show(
+                            "Error deleting workspaces or reservations. Hub not deleted.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        _LoadDataGrideView();
+
+                        return;
+                    }
+                }
                 else
-                    MessageBox.Show("Error:Person Does Not Deleted Successfully.\nDue to User Constrant", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    MessageBox.Show(
+                        "Hub not deleted because workspaces exist.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
             }
+
+            // Delete hub
+            if (ClsHubs.Delete(HubID))
+            {
+                MessageBox.Show(
+                    "Hub deleted successfully.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Error: Hub was not deleted.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
             _LoadDataGrideView();
         }
-
-
 
     }
 }
